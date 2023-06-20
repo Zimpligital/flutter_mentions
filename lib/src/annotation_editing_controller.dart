@@ -9,37 +9,37 @@ class AnnotationEditingController extends TextEditingController {
   // Generate the Regex pattern for matching all the suggestions in one.
   AnnotationEditingController(this._mapping)
       : _pattern = _mapping.keys.isNotEmpty
-            ? "(${_mapping.keys.map((key) => RegExp.escape(key)).join('|')})"
-            : null;
+      ? "(${_mapping.keys.map((key) => RegExp.escape(key)).join('|')})"
+      : null;
 
   /// Can be used to get the markup from the controller directly.
   String get markupText {
     final someVal = _mapping.isEmpty
         ? text
         : text.splitMapJoin(
-            RegExp('$_pattern'),
-            onMatch: (Match match) {
-              final mention = _mapping[match[0]!] ??
-                  _mapping[_mapping.keys.firstWhere((element) {
-                    final reg = RegExp(element);
+      RegExp('$_pattern'),
+      onMatch: (Match match) {
+        final mention = _mapping[match[0]!] ??
+            _mapping[_mapping.keys.firstWhere((element) {
+              final reg = RegExp(element);
 
-                    return reg.hasMatch(match[0]!);
-                  })]!;
+              return reg.hasMatch(match[0]!);
+            })]!;
 
-              // Default markup format for mentions
-              if (!mention.disableMarkup) {
-                return mention.markupBuilder != null
-                    ? mention.markupBuilder!(
-                        mention.trigger, mention.id!, mention.display!)
-                    : '${mention.trigger}[__${mention.id}__](__${mention.display}__)';
-              } else {
-                return match[0]!;
-              }
-            },
-            onNonMatch: (String text) {
-              return text;
-            },
-          );
+        // Default markup format for mentions
+        if (!mention.disableMarkup) {
+          return mention.markupBuilder != null
+              ? mention.markupBuilder!(
+              mention.trigger, mention.id!, mention.display!)
+              : '${mention.trigger}[__${mention.id}__](__${mention.display}__)';
+        } else {
+          return match[0]!;
+        }
+      },
+      onNonMatch: (String text) {
+        return text;
+      },
+    );
 
     return someVal;
   }
