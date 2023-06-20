@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Container(
             child: FlutterMentions(
               key: key,
-              suggestionPosition: SuggestionPosition.Top,
+              suggestionPosition: SuggestionPosition.top,
               maxLines: 5,
               minLines: 1,
               decoration: InputDecoration(hintText: 'hello'),

@@ -48,10 +48,10 @@ class AnnotationEditingController extends TextEditingController {
     return _mapping;
   }
 
-  set mapping(Map<String, Annotation> _mapping) {
-    this._mapping = _mapping;
+  set mapping(Map<String, Annotation> mapping) {
+    _mapping = mapping;
 
-    _pattern = "(${_mapping.keys.map((key) => RegExp.escape(key)).join('|')})";
+    _pattern = "(${mapping.keys.map((key) => RegExp.escape(key)).join('|')})";
   }
 
   @override
