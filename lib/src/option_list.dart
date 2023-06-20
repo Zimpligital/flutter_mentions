@@ -1,7 +1,7 @@
 part of flutter_mentions;
 
 class OptionList extends StatelessWidget {
-  OptionList({
+  const OptionList({
     required this.data,
     required this.onTap,
     required this.suggestionListHeight,
@@ -24,7 +24,7 @@ class OptionList extends StatelessWidget {
     return data.isNotEmpty
         ? Container(
             decoration:
-                suggestionListDecoration ?? BoxDecoration(color: Colors.white),
+                suggestionListDecoration ?? const BoxDecoration(color: Colors.white),
             constraints: BoxConstraints(
               maxHeight: suggestionListHeight,
               minHeight: 0,
@@ -41,10 +41,10 @@ class OptionList extends StatelessWidget {
                       ? suggestionBuilder!(data[index])
                       : Container(
                           color: Colors.blue,
-                          padding: EdgeInsets.all(20.0),
+                          padding: const EdgeInsets.all(20.0),
                           child: Text(
                             data[index]['display'],
-                            style: TextStyle(fontSize: 12),
+                            style: const TextStyle(fontSize: 12),
                           ),
                         ),
                 );
